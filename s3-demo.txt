@@ -1,0 +1,4 @@
+Hello from S3!
+
+This file was uploaded as part of my first AWS S3 practice project.
+Created: 2026-10-24

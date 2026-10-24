@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Secrets and local AWS config
+.env
+.aws/
+*.csv
+
+# Downloaded test files
+downloads/
