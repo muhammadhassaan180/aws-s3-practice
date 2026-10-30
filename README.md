@@ -1,6 +1,6 @@
 # AWS S3 File Manager
 
-A small Python command-line tool for managing files in an Amazon S3 bucket. Built as my first AWS project to practice `boto3`, S3, and basic cloud security.
+A small Python command-line tool for managing files in an Amazon S3 bucket. Built as a personal AWS learning project to practice `boto3`, S3, and basic cloud security.
 
 ## Features
 
@@ -129,4 +129,4 @@ To update the site, upload the files from `static-site/` to the bucket and refre
 
 ---
 
-*Built as part of my Software Engineering learning journey at SSUET.*
+*Built as a personal AWS learning project.*
