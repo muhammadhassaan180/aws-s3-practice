@@ -99,6 +99,16 @@ python3 s3_file_manager.py share s3-demo.txt --expires 60
 python3 s3_file_manager.py --bucket another-bucket list
 ```
 
+## Static website
+
+A one-page personal site lives in [`static-site/`](static-site/) and is hosted on S3:
+
+**http://hassaan-static-site-2026.s3-website-ap-southeast-2.amazonaws.com**
+
+The bucket is public because static website hosting requires it. Only public content belongs there.
+
+To update the site, upload the files from `static-site/` to the bucket and refresh the page.
+
 ## What I learned
 
 1. **S3 basics** — buckets, object keys, and how objects are stored by key rather than by folder.
@@ -106,11 +116,13 @@ python3 s3_file_manager.py --bucket another-bucket list
 3. **Presigned URLs** — giving temporary access to a private object without making the bucket public.
 4. **Error handling** — catching `ClientError` instead of letting a stack trace crash the script.
 5. **Credentials** — keeping access keys out of source code and using environment variables / AWS CLI configuration.
-6. **Bucket security** — keeping Block Public Access enabled and using a private bucket.
+6. **Bucket security** — keeping the file-manager bucket private while using a separate public bucket for the static site.
+7. **Static website hosting** — S3 website endpoints, index/error documents, bucket policies, and public access settings.
 
 ## Notes
 
-- The bucket in this project is private. No public access is enabled.
+- The file-manager bucket (`my-s3-practice-2026-1234`) is private. No public access is enabled.
+- The static-site bucket (`hassaan-static-site-2026`) is public by design because it hosts the website.
 - A presigned URL grants temporary access to anyone who has the link, until it expires. Treat it like a password.
 - `s3-demo.txt` is a sample file used for testing.
 - This is a learning project, not production tooling.
