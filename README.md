@@ -8,6 +8,7 @@ A small Python command-line tool for managing files in an Amazon S3 bucket. Buil
 - **Upload** a local file
 - **Download** an object
 - **Delete** an object
+- **Share** an object with a temporary presigned URL
 - Clear error messages for AWS failures
 
 ## Requirements
@@ -88,6 +89,12 @@ python3 s3_file_manager.py download s3-demo.txt downloaded-s3-demo.txt
 # Delete an object
 python3 s3_file_manager.py delete s3-demo.txt
 
+# Create a temporary download link (default: 10 minutes)
+python3 s3_file_manager.py share s3-demo.txt
+
+# Create a link valid for 60 seconds
+python3 s3_file_manager.py share s3-demo.txt --expires 60
+
 # Override the bucket for one command
 python3 s3_file_manager.py --bucket another-bucket list
 ```
@@ -95,14 +102,16 @@ python3 s3_file_manager.py --bucket another-bucket list
 ## What I learned
 
 1. **S3 basics** — buckets, object keys, and how objects are stored by key rather than by folder.
-2. **boto3** — creating a client, calling `list_objects_v2`, `upload_file`, `download_file`, and `delete_object`.
-3. **Error handling** — catching `ClientError` instead of letting a stack trace crash the script.
-4. **Credentials** — keeping access keys out of source code and using environment variables / AWS CLI configuration.
-5. **Bucket security** — keeping Block Public Access enabled and using a private bucket.
+2. **boto3** — creating a client, calling `list_objects_v2`, `upload_file`, `download_file`, `delete_object`, and `generate_presigned_url`.
+3. **Presigned URLs** — giving temporary access to a private object without making the bucket public.
+4. **Error handling** — catching `ClientError` instead of letting a stack trace crash the script.
+5. **Credentials** — keeping access keys out of source code and using environment variables / AWS CLI configuration.
+6. **Bucket security** — keeping Block Public Access enabled and using a private bucket.
 
 ## Notes
 
 - The bucket in this project is private. No public access is enabled.
+- A presigned URL grants temporary access to anyone who has the link, until it expires. Treat it like a password.
 - `s3-demo.txt` is a sample file used for testing.
 - This is a learning project, not production tooling.
 
